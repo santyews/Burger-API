@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burgerssss 🍔</title>
+    <style>
+        body {
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            background-image: url(https://static.vecteezy.com/system/resources/previews/014/469/007/non_2x/vintage-fast-food-seamless-pattern-hand-drawn-monochrome-junk-food-illustration-with-pizza-burger-french-fries-and-hot-dog-great-for-menu-poster-or-restaurant-background-free-vector.jpg);
+            color: rgb(255, 255, 255);
+            cursor: url('https://lh3.google.com/u/0/d/154rN8flDWdOhp13_jC0Ac7ZY-Rj65vH4=w1868-h932-iv1'), auto;
+
+        }
+        h1 {
+            display: flex;
+            color: rgb(255, 255, 255);
+            justify-content: center;
+            font-size: 60px;
+            -webkit-text-stroke-color: black;
+            -webkit-text-stroke-width: 2px;
+        }
+
+        .burger {
+            margin: 50px;
+            display: flex;
+            border: 2px solid white;
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            color: black;
+        }
+        .burger h1 {
+            display: grid;
+            justify-content: left;
+            font-size: 100px;
+            margin: 0%;
+            margin-left: 600px;
+            color: white;
+        }
+       .burger h2 {
+            display: flex;
+            justify-content: center;
+            font-size: 24px;
+            color: #ffffff; 
+            margin: 0%;
+        }       
+        .burger hr {
+            width: 1353px;
+            display: flex;
+            justify-content: left;
+            margin: 0%;
+        }
+        .burger p {
+            display: flex;
+            justify-content: center ;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1> Burgerss 🍔 </h1>
+    <div id="burger-container"></div>
+
+    <script>
+async function getBurger() {
+    try {
+        const response = await fetch('https://my-burger-api.herokuapp.com/burgers');
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+
+        const container = document.getElementById('burger-container');
+        container.innerHTML = '';
+
+        data.forEach(burger => { 
+            const burgerDiv = document.createElement('div');
+            burgerDiv.classList.add('burger');
+
+            burgerDiv.innerHTML = `
+                <div>
+                    <h2>${burger.name}</h2> 
+                    <h1>🍔</h1> 
+                    <div>
+                        <hr>
+                        <p>Restaurante: ${burger.restaurant}</p>
+                        <p>Descripción: ${burger.description}</p>
+                        <p>Ingredientes: ${burger.ingredients.join(', ')}</p>
+                    </div>
+                </div>
+            `;
+            container.appendChild(burgerDiv); 
+        });
+    } catch (error) {
+        console.error('Error:', error);
+    } finally {
+        console.log('Burgers loaded!');
+    }
+}
+
+getBurger();
+    </script>
+</body>
+</html>

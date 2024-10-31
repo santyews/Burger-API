@@ -7,7 +7,8 @@
 
 ## Descripción:
 Esta API permite acceder a información detallada disponibles en Estados unidos. 
-Dentro de su información muestra: 
+Dentro de su información muestra:
+
 	Nombre de hamburguesa
 	Ingredientes
 	Lugar de venta
